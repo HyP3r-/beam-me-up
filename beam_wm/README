@@ -1,0 +1,13 @@
+This is beam_wm, a small window manager which is part of beam.
+
+# Compiliation
+
+First install some librarys:
+
+    # apt-get install x11proto-core-dev libx11-dev libxrandr-dev \
+                      xloadimage xinit xserver-xorg 
+                      
+Now you can compile this programm:
+
+    # make all
+    

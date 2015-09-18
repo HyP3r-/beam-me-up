@@ -1,0 +1,86 @@
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 800px;
+    min-width: 600px;
+    width: 70%;
+    background-color: #ffffff;
+}
+
+.outside {
+    background-color: #ffc491;
+}
+
+.headline {
+    color: #FF6500;
+}
+
+.content-frame {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.navbar-inversed {
+    background-color: #FF6500;
+    color: #ffffff;
+}
+
+/* TODO This has to improved for mobile platforms */
+.navbar-form .form-control {
+    width: 150px;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-brand {
+    color: rgba(119, 119, 119, 1);
+}
+
+#custom-bootstrap-menu.navbar-default {
+    font-size: 14px;
+    background-color: rgba(255, 101, 0, 1);
+    border-width: 0px;
+    border-radius: 0px;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav > li > a {
+    color: rgba(255, 240, 229, 0.6);
+    background-color: rgba(248, 248, 248, 0);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav > li > a:hover,
+#custom-bootstrap-menu.navbar-default .navbar-nav > li > a:focus {
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 160, 97, 1);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-nav > .active > a,
+#custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:hover,
+#custom-bootstrap-menu.navbar-default .navbar-nav > .active > a:focus {
+    color: rgba(255, 240, 229, 1);
+    background-color: rgba(255, 160, 97, 1);
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle {
+    border-color: #ffa061;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle:hover,
+#custom-bootstrap-menu.navbar-default .navbar-toggle:focus {
+    background-color: #ffa061;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle .icon-bar {
+    background-color: #ffa061;
+}
+
+#custom-bootstrap-menu.navbar-default .navbar-toggle:hover .icon-bar,
+#custom-bootstrap-menu.navbar-default .navbar-toggle:focus .icon-bar {
+    background-color: #ff6500;
+}
+
+.btn-main {
+    width: 200px;
+    height: 50px;
+    border-radius: 6px;
+    font-size: 20px;
+    margin: 10px;
+}

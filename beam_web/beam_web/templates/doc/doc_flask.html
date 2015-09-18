@@ -1,0 +1,28 @@
+{% extends "frames/frame_layout.html" %}
+{% block title %}Flask{% endblock %}
+{% block menue %}{% include "nav/nav_default.html" %}{% endblock %}
+{% block body %}
+<h2 class="headline">Python3 Flask</h2>
+<p>Flask ist ein in Python geschriebenes Micro-Framework zur Entwicklung von Webanwendungen. Der Fokus von Flask liegt auf Erweiterbarkeit und guter Dokumentation.
+Die einzigen Abhängigkeiten sind Jinja2, eine Template Engine, und Werkzeug, eine Bibliothek zum Erstellen von WSGI-Anwendungen.
+Flask kommuniziert über die WSGI-Schnittstelle, derzeit die aktuelle Entwicklung für die Kommunikation zwischen Webserver und Webanwendungen im Python-Umfeld.</p>
+<table border="0" width="70%">
+  <colgroup>
+    <col width="10%"
+    <col height=”10%″>
+  </colgroup>
+  <tr>
+    <td><h4>Name: </h4></td>
+    <td>Python3 Flask </td>
+  </tr>
+  <tr>
+    <td><h4>Version: </h4></td>
+    <td><!--Versionsnumber--></td>
+  </tr>
+  <tr>
+    <td><h4>Webseite: </h4></td>
+    <td><a href="http://flask.pocoo.org/"target="_blank">Flask Home</a></td>
+  </tr>
+
+</table>
+{% endblock %}

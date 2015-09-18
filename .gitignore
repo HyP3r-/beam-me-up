@@ -1,0 +1,22 @@
+# project files
+.directory
+.idea
+
+# window manager
+smallwm
+*.o
+
+# binarys
+*.exe
+*.pyc
+
+# tarballs
+*.tar
+*.tar.gz
+*.tar.xz
+
+# misc
+*.avi
+*.pdf
+
+

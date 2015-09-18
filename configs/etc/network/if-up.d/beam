@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# redirect port 80 to 5000 for flask
+iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 5000
+
+

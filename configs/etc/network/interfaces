@@ -1,0 +1,16 @@
+# loopback-Interface do not delete
+auto lo
+iface lo inet loopback
+
+# LAN: automatic DHCP
+auto eth0
+allow-hotplug eth0
+iface eth0 inet dhcp
+
+# WLAN: static config
+auto wlan0
+iface wlan0 inet static
+  address 192.168.42.1
+  netmask 255.255.255.0
+  broadcast 192.168.2.255
+

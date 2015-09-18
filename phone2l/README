@@ -1,0 +1,35 @@
+Phone2l - Instruction
+=====================
+
+Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>, 2015-06-10
+
+
+
+A. Getting started
+------------------
+
+1. Build and install liblinphone
+   Go to 'external/linphone' and follow the instructions given in
+   the file named 'README'.
+
+2. Build phone2l
+   > make
+
+3. Run phone2l (in listening mode)
+   > ./phone2l -a 2>/dev/null
+
+4. From some other device running linphone dial 'sip:8@beamer'
+
+
+
+B. Further Steps
+----------------
+
+5. For usage instructions to phone2l running
+   > phone2l -h
+
+6. To change setting related to linphone or telefony such as selecting
+   preferred codecs, video sizes or to register with a SIP server either
+
+   a) edit ~/.linphonerc or
+   b) run 'linphone'

@@ -1,0 +1,62 @@
+<div id="top_nav">
+    <nav id="custom-bootstrap-menu" class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('index') }}"><img style="max-width: 85px; margin-top: -5px" src="{{ url_for('static', filename='img/logo.png') }}"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li {%  if request.path == url_for('software') %} class="active" {% endif %}><a href="{{ url_for('software') }}">Download</a></li>
+                    <li {%  if request.path == url_for('connections') %} class="active" {% endif %}><a href="{{ url_for('connections') }}">Andere Desktops</a></li>
+                    <li {%  if request.path == url_for('upload') %} class="active" {% endif %}><a href="{{ url_for('upload') }}">Dateien</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Doku <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li {%  if request.path == url_for('doc') %} class="active" {% endif %}><a href="{{ url_for('doc') }}">Allgemein</a></li>
+                            <li class="divider"></li>
+                            <li {%  if request.path == url_for('doc_flask') %} class="active" {% endif %}><a href="{{ url_for('doc_flask') }}">Python3 Flask</a></li>
+                            <li {%  if request.path == url_for('doc_ipython') %} class="active" {% endif %}><a href="{{ url_for('doc_ipython') }}">IPython</a></li>
+                            <li {%  if request.path == url_for('doc_minipc') %} class="active" {% endif %}><a href="{{ url_for('doc_minipc') }}">Mini PC</a></li>
+                            <li class="divider"></li>
+                            <li {%  if request.path == url_for('doc_evince') %} class="active" {% endif %}><a href="{{ url_for('doc_evince') }}">Evince</a></li>
+                            <li {%  if request.path == url_for('doc_vlc') %} class="active" {% endif %}><a href="{{ url_for('doc_vlc') }}">VLC Media Player</a></li>
+                            <li class="divider"></li>
+                            <li {%  if request.path == url_for('doc_vnc') %} class="active" {% endif %}><a href="{{ url_for('doc_vnc') }}">VNC Verbindung</a></li>
+                            <li {%  if request.path == url_for('doc_vncclient') %} class="active" {% endif %}><a href="{{ url_for('doc_vncclient') }}">VNC Client</a></li>
+                            <li {%  if request.path == url_for('doc_vncserver') %} class="active" {% endif %}><a href="{{ url_for('doc_vncserver') }}">VNC Server</a></li>
+                            <li {%  if request.path == url_for('doc_webserver') %} class="active" {% endif %}><a href="{{ url_for('doc_webserver') }}">Reverse?</a></li>
+                            <li class="divider"></li>
+                            <li {%  if request.path == url_for('doc_reverse') %} class="active" {% endif %}><a href="{{ url_for('doc_reverse') }}">Webserver</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% if not current_user.is_authenticated() %}
+                <form class="navbar-form navbar-right" action="{{ url_for('login') }}" method="post">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" maxlength="10" placeholder="Benutzer" />
+                        <input type="password" class="form-control" name="password" maxlength="10" placeholder="Passwort (optional)" />
+                    </div>
+                    <button type="submit" class="btn btn-success" name="level" value="guest">
+                        Login Gast
+                    </button>
+                    <button type="submit" class="btn btn-danger btn-xs" name="level" value="lecturer">
+                        Login Dozent
+                    </button>
+                </form>
+                {% else  %}
+                <form class="navbar-form navbar-right" action="{{ url_for('logout') }}" method="post">
+                    <button type="submit" class="btn btn-danger">{{ current_user.username }} Trennen</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</div>

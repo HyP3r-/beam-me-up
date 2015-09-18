@@ -1,0 +1,56 @@
+{% extends "frames/frame_layout.html" %}
+{% block title %}Mini-PC{% endblock %}
+{% block menue %}{% include "nav/nav_default.html" %}{% endblock %}
+{% block body %}
+<h2 class="headline">Mini PC</h2>
+  <p>Das Cubieboard ist ein Einplatinencomputer, der als Open-Source-Projekt im September 2012 vorgestellt wurde und seit Oktober 2012 verkauft wird.[1] Eine Besonderheit des Systems ist sein (in dieser Leistungsklasse ungewöhnlicher) SATA-Anschluss.[2] Als Betriebssystem ist Android im Flash-Speicher vorinstalliert, alternativ können verschiedene angepasste Linux-Distributionen verwendet werden.
+  Das Konzept ist im Hinblick auf die verwendeten ARM-Prozessoren mit 1 GHz Taktfrequenz, die Speicher- und Schnittstellenausstattung leistungsfähiger als der verbreitete, vergleichbare Raspberry Pi. Der Rechner ist jedoch erst deutlich kürzere Zeit auf dem Markt, weshalb die Software-Verfügbarkeit noch geringer ist.
+  Es gibt bereits drei Versionen, Cubieboard, Cubieboard2 und Cubieboard3 (auch Cubietruck genannt), die mit aufsteigender Zahl leistungsfähiger bzw. besser ausgestattet sind. Das Cubieboard3 bietet im Gegensatz zu den anderen Modellen auch Gigabit-Ethernet, WLAN, Bluetooth, einen optischen TOSLINK-Audioausgang, einen VGA-Anschluss und eine Echtzeituhr.</p>
+<table border="0" width="70%">
+  <colgroup>
+    <col width="10%"
+    <col height=”10%″>
+  </colgroup>
+  <tr>
+    <td>  </td>
+    <td><h4 align="center">Technische Daten: </h4></td>
+  </tr>
+  <tr>
+    <td><h4>CPU: </h4></td>
+    <td>Allwinner A20 SoC (2 ARM-Cortex A7-Prozessorkerne mit 1 GHz Taktfrequenz)</td>
+  </tr>
+  <tr>
+    <td><h4>GPU: </h4></td>
+    <td>Mali-400MP-GPU und CedarX-VPU; kann 2160p-Video dekodieren (Ultra HD)</td>
+  </tr>
+  <tr>
+    <td><h4>Speicher: </h4></td>
+    <td>2 GB DDR3 SDRAM mit 480 MHz</td>
+  </tr>
+  <tr>
+    <td><h4>Anschlüsse: </h4></td>
+    <td>2x USB Host, 1x USB On-the-go, 1x CIR, 1x SATA 2.0</td>
+  </tr>
+  <tr>
+    <td><h4>Video: </h4></td>
+    <td>HDMI-1080p-Ausgabe bzw. VGA</td>
+  </tr>
+  <tr>
+    <td><h4>Storage: </h4></td>
+    <td>8 GB NAND-Flash, 1x MicroSD Steckplatz, HDD-Anschluß über SATA2-Port</td>
+  </tr>
+  <tr>
+    <td><h4>Netzwerk: </h4></td>
+    <td>10/100/1000 RTL8211E Ethernet PHY, WLAN und Bluetooth onboard via PCB-Antenne (Chip: Broadcom BCM4329/BCM40181)</td>
+  </tr>
+<tr>
+    <td><h4>Stromverbrauch: </h4></td>
+    <td>maximal 2.5A bei 5V, unterstützt Li-battery</td>
+  </tr>
+<tr>
+    <td><h4>Betriebssystem: </h4></td>
+    <td>Debian 7.x</td>
+  </tr>
+</table>
+
+{% endblock %}

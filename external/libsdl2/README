@@ -1,0 +1,31 @@
+libSDL2 - Notes
+===============
+
+Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>, 2015-07-03
+
+
+On an Allwinner A20 SoCs, libSDL2 can make utilize the Mali 400 GPU
+using OpenGL ES 2.0. However, OpenGL ES 2 appears not to work with
+of both OpenGL and OpenCL ES 2 support are compiled in at the same time.
+In the Debian Jessie, this is the case.
+
+The attached package is based on the source package 'libsdl2 (2.0.2+dfsg1-6)'
+and disables OpenGL support.
+
+
+1. Prerequisites:
+
+    libsdl2_2.0.2+dfsg1-gk1.dsc
+    libsdl2_2.0.2+dfsg1-gk1.debian.tar.xz
+    libsdl2_2.0.2+dfsg1.orig.tar.xz   # download from http://http.debian.net/debian/pool/main/libs/libsdl2/libsdl2_2.0.2+dfsg1.orig.tar.xz
+
+2. Build
+
+    > dpkg-source -x libsdl2_2.0.2+dfsg1-gk1.dsc
+    > cd libsdl2-2.0.2+dfsg1/
+    > debuild
+    > cd ..
+
+3. Install
+
+    > dpkg -i libsdl2-*-gk1_<arch>.deb

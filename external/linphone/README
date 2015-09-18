@@ -1,0 +1,82 @@
+Building 'liblinphone' for lightweight applications under Debian Jessie
+=======================================================================
+
+Gundolf Kiefer <gundolf.kiefer@hs-augsburg.de>, 2015-06-10
+
+
+
+'liblinphone' <www.linphone.org> is an exhaustive open source library
+for SIP-based audio and video telephony. Unfortunately, it directly
+and indirectly depends on a large number of other libraries making it
+difficult to compile on a dedicated system.
+
+This mini-howto is meant to help you generate an archivable source code
+snapshot of 'liblinphone' (including the 'linphone' frontends) together
+with the sub-libraries 'belle-sip', 'oRTP', and 'mediastreamer2'.
+
+The libraries are configured for static linking and with reduced
+functionality to support lightweight self-contained applications. The
+original (but not only) purpose was to develop a video communication
+tool for small embedded ARM-based devices running under Debian Linux
+(Jessie).
+
+Most of the instructions in detail can be found in the attached
+'Makefile', which is both human-readable and machine-readable.
+
+
+1. Prerequisites
+----------------
+
+This directory must contain:
+
+  README     # This file
+  Makefile
+
+  bellesip-<version>.tar.gz
+  linphone-<version>.tar.gz
+  mediastreamer-<version>.tar.gz
+  ortp-<version>.tar.gz
+
+The .tar.gz files are not necessary if you intend to clone the original
+source code. With the tarballs, no additional download from linphone.org
+is necessary.
+
+Under Debian Jessie, the following command installs the required
+packages to satisfy build dependencies. It may be incomplete, however,
+all required development packages are available under Debian Jessie,
+tested with architectures 'armhf' and 'i386'.
+
+  aptitude install libtool intltool libgtk2.0-dev libspeexdsp-dev libavcodec-dev libswscale-dev libx11-dev libxv-dev libgl1-mesa-dev libglew-dev libv4l-dev libxml2-dev libreadline-dev libsrtp-dev git \
+    antlr antlr3 libantlr3c-dev \
+    libsqlite3-dev libsoup2.4-dev libpolarssl-dev
+    # Line 1: linphone (from README)
+    # Line 2: belle-sip    
+    # Line 3: liblinphone / mediastreamer2
+
+
+2. Building from source tarballs
+--------------------------------
+
+  # Check 'Makefile' for settings (i.e. installation path)
+  make unpack
+  make
+  [sudo] make install
+
+
+3. Downloading & building without source tarballs
+-------------------------------------------------
+
+  # Check 'Makefile' for settings (i.e. installation path)
+  make clone
+  make checkout
+  make
+  [sudo] make install
+
+
+4. Creating a set of tarballs
+-----------------------------
+
+  make clone
+  make pack
+  [make clone-clean]   # to remove the cloned directory again
+
