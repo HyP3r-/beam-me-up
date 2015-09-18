@@ -147,7 +147,7 @@ configure-linphone: linphone linphone/oRTP linphone/mediastreamer2 .bellesip-bui
 	  LDFLAGS="-lm -lXext" \
 	  ./configure --prefix=${PREFIX} --disable-shared --enable-static --disable-strict \
 	  --disable-nls --disable-oss --disable-pulseaudio --disable-gsm --disable-matroska --disable-spandsp --disable-upnp --disable-opus \
-	  --enable-x11 --disable-xv --disable-glx --disable-sdl --disable-theora --disable-vp8 --disable-g729bCN --with-srtp=none --disable-zlib --disable-notify \
+	  --enable-x11 --disable-xv --disable-glx --disable-sdl --disable-theora --enable-vp8 --disable-g729bCN --with-srtp=none --disable-zlib --disable-notify \
 	  --enable-date --enable-alsa --disable-lime --disable-msg-storage
 	touch .linphone-configured
 	@echo ""
