@@ -1,0 +1,6 @@
+[submodule "external/linphone/belle-sip"]
+	path = external/linphone/belle-sip
+	url = git://git.linphone.org/belle-sip.git
+[submodule "external/linphone/linphone"]
+	path = external/linphone/linphone
+	url = git://git.linphone.org/linphone.git
