@@ -10,11 +10,6 @@ smallwm
 *.exe
 *.pyc
 
-# tarballs
-*.tar
-*.tar.gz
-*.tar.xz
-
 # misc
 *.avi
 *.pdf
