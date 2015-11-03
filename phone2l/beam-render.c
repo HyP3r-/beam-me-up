@@ -38,7 +38,7 @@ static SDL_Window *sdlWindow = NULL;
 static SDL_Renderer *sdlRenderer = NULL;
 static TTF_Font *sdlFont = NULL;
 static SDL_Texture *texVideoRemote = NULL, *texVideoLocal = NULL, *texMessage = NULL;
-static volatile BOOL sdlRenderUpdate = FALSE;
+static volatile BOOL sdlRenderUpdate = FALSE;   // TBD: this should be a local variable in 'BRIterate'
 
 MSPicture picLocal, picRemote;
 static volatile BOOL picLocalUpdated, picRemoteUpdated;
@@ -48,7 +48,7 @@ static SDL_mutex *picMutex;   // Mutex for 'picLocal', 'picRemote' + flags
 // Important note on the design (2015-05-22)
 //
 // It seems that SDL2 calls from different treads are not allowed if GPU acceleration
-// is to be used, even if SDL2 calls are properly sunchronized with a mutex.
+// is to be used, even if SDL2 calls are properly synchronized with a mutex.
 // Unfortunately, the video images are delivered by a background thread from
 // mediastreamer2 ('MSFilterDesc::process'). Hence, this module is designed as follows:
 //
@@ -107,6 +107,10 @@ static void MSPictureCopyFrom (MSPicture *pic, MSPicture *src) {
     //printf ("### Copying: %08x\n", (uint32_t) pic->planes[0]);
     if (pic->h) for (n = 0; n < 4; n++) if (src->strides[n])
       memcpy (pic->planes[n], src->planes[n], pic->h / (pic->strides[0] / pic->strides[n]) * pic->strides[n]);
+        // It seems that planes with a smaller (half) stride than plane #0 also have
+        // a smaller y resolution. For this reason, the height is devided in the same
+        // ratio. I do not know if this assumption is true. However, using 'pic->h'
+        // for all planes leads to eventual segmentation faults.
   }
 }
 
@@ -293,6 +297,30 @@ static MSFilterDesc msDisplayDesc = {
 // ***************** Init/Done *****************************
 
 
+void BRPrintRendererInfo () {
+  SDL_RendererInfo renInfo;
+  int drivers, n;
+
+  drivers = SDL_GetNumRenderDrivers ();
+  if (!drivers)
+    printf ("W: No SDL render drivers available!\n");
+  else {
+    for (n = 0; n < drivers; n++) {
+      if (SDL_GetRenderDriverInfo (n, &renInfo) == 0) {
+        printf ("I: Available SDL render driver #%i: '%s', max. texture: %ix%i, flags:%s%s%s%s.\n",
+                n, renInfo.name, renInfo.max_texture_width, renInfo.max_texture_height,
+                renInfo.flags & SDL_RENDERER_SOFTWARE ? " SOFTWARE" : "",
+                renInfo.flags & SDL_RENDERER_ACCELERATED ? " ACCELERATED" : "",
+                renInfo.flags & SDL_RENDERER_PRESENTVSYNC ? " PRESENTVSYNC" : "",
+                renInfo.flags & SDL_RENDERER_TARGETTEXTURE ? " TARGETTEXTURE" : "");
+      }
+      else
+        printf ("W: Unable to get info on render driver #%i.\n", n);
+    }
+  }
+}
+
+
 BOOL BRInit (const char *fontFileName, int fontSize) {
 
   // Init SDL and SDL_TTF...
@@ -319,6 +347,9 @@ BOOL BRInit (const char *fontFileName, int fontSize) {
     SDL_Quit ();
     return FALSE;
   }
+
+  // Print info on available renderers...
+  BRPrintRendererInfo ();
 
   // Return with success...
   return TRUE;
@@ -370,6 +401,7 @@ BOOL BRWindowOpen (char *titel, BOOL forceSoftwareRenderer, int interpolationMet
 
   // Init renderer...
   sdlRenderer = SDL_CreateRenderer (sdlWindow, -1, forceSoftwareRenderer ? SDL_RENDERER_SOFTWARE : 0);
+  //sdlRenderer = SDL_CreateRenderer (sdlWindow, 1, 0);
   if (!sdlRenderer) {
     SDL_DestroyWindow (sdlWindow);
     sdlWindow = NULL;
