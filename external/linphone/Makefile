@@ -83,7 +83,7 @@ clean:
 .bellesip-built: .bellesip-configured
 	make build-bellesip
 
-configure-bellesip: belle-sip linphone linphone/oRTP linphone/mediastreamer2
+configure-bellesip: .autogen belle-sip linphone linphone/oRTP linphone/mediastreamer2
 	@echo "#############################################################"
 	@echo "# Configuring belle-sip ...                                 #"
 	@echo "#############################################################"
@@ -94,7 +94,7 @@ configure-bellesip: belle-sip linphone linphone/oRTP linphone/mediastreamer2
 	touch .bellesip-configured
 	@echo " "
 
-build-bellesip: .bellesip-configured
+build-bellesip: .autogen .bellesip-configured
 	@echo "#############################################################"
 	@echo "# Building belle-sip ...                                    #"
 	@echo "#############################################################"
@@ -155,7 +155,7 @@ configure-linphone: linphone linphone/oRTP linphone/mediastreamer2 .bellesip-bui
 #	  BELLESIP_CFLAGS=-I${PWD}/../belle-sip/include \
 #	  BELLESIP_LIBS=-L${PWD}/../belle-sip/src \
 
-build-linphone: .linphone-configured .bellesip-built
+build-linphone: .autogen .linphone-configured .bellesip-built
 	@echo "#############################################################"
 	@echo "# Building linphone ...                                     #"
 	@echo "#############################################################"
@@ -189,6 +189,13 @@ clean-linphone:
 
 
 ##### Helpers for source code downloading and packaging #####
+
+.autogen:
+	cd belle-sip; ./autogen.sh
+	@echo
+	cd linphone; ./autogen.sh
+	@echo
+	touch .autogen
 
 
 
@@ -228,10 +235,6 @@ unpack:
 	tar zxf linphone-${VER_LINPHONE}.tar.gz
 	tar zxf ortp-${VER_ORTP}.tar.gz
 	tar zxf mediastreamer-${VER_MEDIASTREAMER}.tar.gz
-	@echo
-	cd belle-sip; ./autogen.sh
-	@echo
-	cd linphone; ./autogen.sh
 
 # Remove source directories ...
 # (Warning: this also removes eventually cloned source trees!)
