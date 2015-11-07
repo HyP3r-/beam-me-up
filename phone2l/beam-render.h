@@ -54,7 +54,7 @@ void BRDone ();
 
 // ***** Window management *****
 
-BOOL BRWindowOpen (char *titel, BOOL forceSoftwareRenderer, int interpolationMethod);
+BOOL BRWindowOpen (const char *titel, BOOL forceSoftwareRenderer, int interpolationMethod);
   // Opens the window (presently only one window supported)
   // on error, prints a message and returns 'FALSE'
   // 'interpolationMethod' can be one of: 0=auto, 1=nearest, 2=bilinear

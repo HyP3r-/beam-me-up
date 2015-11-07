@@ -23,9 +23,10 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
+current_page=2
 FILE_NAME_0=0;None;0;EUTF-8;0;1;0;%2Fhome%2Fgundolf%2Fhsa%2Fprojekte%2Fbeam_me_up%2Fgit%2Fphone2l%2FREADME;0;2
 FILE_NAME_1=0;Make;0;EUTF-8;1;1;0;%2Fhome%2Fgundolf%2Fhsa%2Fprojekte%2Fbeam_me_up%2Fgit%2Fphone2l%2FMakefile;0;2
+FILE_NAME_2=0;C;0;EUTF-8;0;1;0;%2Fhome%2Fgundolf%2Fhsa%2Fprojekte%2Fbeam_me_up%2Fgit%2Fphone2l%2Fbeam-render.c;0;2
 
 [VTE]
 last_dir=/home/gundolf/hsa/projekte.nobackup/beam_me_up/git/phone2l

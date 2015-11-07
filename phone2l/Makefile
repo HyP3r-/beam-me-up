@@ -1,6 +1,6 @@
 INSTALL_DIR=/usr/local/bin
 
-CC = gcc
+CC = g++
 LIBLINPHONE = /opt/linphone
 
 CFLAGS = -I$(LIBLINPHONE)/include -g -Wall -pthread -DVERSION=\"`date +%Y-%m-%d`\" # -O3
@@ -32,7 +32,7 @@ depend:
 	makedepend -Y $(SRC)
 
 $(BIN): $(OBJ)
-	gcc -o $(BIN) $(OBJ) $(LDFLAGS)
+	$(CC) -o $(BIN) $(OBJ) $(LDFLAGS)
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $<

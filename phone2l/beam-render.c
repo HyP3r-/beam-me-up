@@ -99,7 +99,7 @@ static void MSPictureCopyFrom (MSPicture *pic, MSPicture *src) {
 
     if (pic->planes[0] == NULL) {
       // Allocate memory...
-      pic->planes[0] = malloc (bytes[0] + bytes[1] + bytes[2] + bytes[3]);
+      pic->planes[0] = (uint8_t *) malloc (bytes[0] + bytes[1] + bytes[2] + bytes[3]);
       for (n = 1; n < 4; n++) pic->planes[n] = pic->planes[n-1] + bytes[n-1];
       //printf ("### (Re)allocating: %08x\n", (uint32_t) pic->planes[0]);
     }
@@ -182,7 +182,7 @@ static void RenderUpdate () {
 }
 
 
-static void UpdateTextureFromMSPicture (SDL_Texture **pTex, MSPicture *pic, char *viewName) {
+static void UpdateTextureFromMSPicture (SDL_Texture **pTex, MSPicture *pic, const char *viewName) {
   int texW, texH;
 
   if (!pic) {
@@ -280,15 +280,7 @@ static void MSDisplayProcess (MSFilter *f) {
 // *****
 
 
-static MSFilterDesc msDisplayDesc = {
-  .id=MS_FILTER_PLUGIN_ID,
-  .name = "BRDisplay",
-  .text = "A custom video display for 'beam-render'",
-  .category = MS_FILTER_OTHER,
-  .ninputs = 2,
-  .noutputs = 0,
-  .process = MSDisplayProcess,
-};
+static MSFilterDesc msDisplayDesc;
 
 
 
@@ -357,6 +349,14 @@ BOOL BRInit (const char *fontFileName, int fontSize) {
 
 
 void BRInitMediastreamer () {
+  memset (&msDisplayDesc, 0, sizeof (msDisplayDesc));
+  msDisplayDesc.id=MS_FILTER_PLUGIN_ID;
+  msDisplayDesc.name = "BRDisplay";
+  msDisplayDesc.text = "A custom video display for 'beam-render'";
+  msDisplayDesc.category = MS_FILTER_OTHER;
+  msDisplayDesc.ninputs = 2;
+  msDisplayDesc.noutputs = 0;
+  msDisplayDesc.process = MSDisplayProcess;
   ms_filter_register (&msDisplayDesc);
 }
 
@@ -384,7 +384,7 @@ void BRDone () {
 // ***************** Window management *********************
 
 
-BOOL BRWindowOpen (char *titel, BOOL forceSoftwareRenderer, int interpolationMethod) {
+BOOL BRWindowOpen (const char *titel, BOOL forceSoftwareRenderer, int interpolationMethod) {
   SDL_RendererInfo renInfo;
   BOOL accelerated;
 
